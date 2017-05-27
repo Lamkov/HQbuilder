@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HQ-Builder</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <script src="js/bootstrap.js" async></script>
+  <script src="js/scripts.js" async></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">HQ-Builder</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#"><span class="glyphicon glyphicon-fire header-glyph"></span> Home</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-list header-glyph"></span> Rosters</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-comment header-glyph"></span> Battles</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-fire header-glyph"></span> Discuss</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-envelope header-glyph"></span> Write us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div id="rosters-list">
+          <h3 class="pull-left">Rosters</h3>
+          <div data-bind="visible: !loaded()" style="display: none;">
+            <em class="muted">Loading ...</em>
+          </div>
+          <div data-bind="visible: loaded()">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pull-left">
+                  <form class="form-inline" method="post">
+                    <div class="form-group">
+                      <label class="sr-only" for="army-selector">Army name</label>
+                      <select class="form-control" id="army-selector">
+                                        <optgroup label="Shadow War: Armmageddon">
+                                            <option value="Astra Militarum Veteran Kill Team">Astra Militarum Veteran Kill Team</option>
+                                            <option value="Ork Boyz Kill Team">Ork Boyz Kill Team</option>
+                                            <option value="Space Marines Kill Team">Space Marines Kill Team</option>
+                                            <option value="Space Wolves Kill Team">Space Wolves Kill Team</option>
+                                        </optgroup>
+                                        <optgroup label="Warhammer 40k">
+                                            <option value="Adepta Sororitas">Adepta Sororitas</option>
+                                            <option value="Armies of the Imperium">Armies of the Imperium</option>
+                                            <option value="Astra Militarum">Astra Militarum</option>
+                                            <option value="Astra Telepathica">Astra Telepathica</option>
+                                            <option value="Blood Angels">Blood Angels</option>
+                                            <option value="Chaos Daemons">Chaos Daemons</option>
+                                            <option value="Chaos Space Marines">Chaos Space Marines</option>
+                                            <option value="Cult Mechanicus">Cult Mechanicus</option>
+                                            <option value="Custodian Guard">Custodian Guard</option>
+                                            <option value="Dark Angels">Dark Angels</option>
+                                            <option value="Dark Eldar">Dark Eldar</option>
+                                            <option value="Deathwatch">Deathwatch</option>
+                                            <option value="Eldar">Eldar</option>
+                                            <option value="Fallen Angels">Fallen Angels</option>
+                                            <option value="Genestealer Cult">Genestealer Cult</option>
+                                            <option value="Grey Knights">Grey Knights</option>
+                                            <option value="Harlequins">Harlequins</option>
+                                            <option value="Imperial Knights">Imperial Knights</option>
+                                            <option value="Imperial Navy">Imperial Navy</option>
+                                            <option value="Inquisition">Inquisition</option>
+                                            <option value="Khorne Daemonkin">Khorne Daemonkin</option>
+                                            <option value="Legion of the Damned">Legion of the Damned</option>
+                                            <option value="Militarum Tempestus">Militarum Tempestus</option>
+                                            <option value="Necrons">Necrons</option>
+                                            <option value="Officio Assasinorum">Officio Assasinorum</option>
+                                            <option value="Orks">Orks</option>
+                                            <option value="Sisters of Silence">Sisters of Silence</option>
+                                            <option value="Skitarii">Skitarii</option>
+                                            <option value="Space Marines">Space Marines</option>
+                                            <option value="Space Wolves">Space Wolves</option>
+                                            <option value="Tau Empire">Tau Empire</option>
+                                            <option value="Tyranids">Tyranids</option>
+                                            <option value="Ynnari">Ynnari</option>
+                                        </optgroup>
+                                        <optgroup label="Warhammer 40k: Imperial armour">
+                                            <option value="Corsairs">Corsairs</option>
+                                          <option value="Death Korps of Krieg">Death Korps of Krieg</option>
+                                            <option value="Dreadmob">Dreadmob</option>
+                                            <option value="Renegades and Heretics">Renegades and Heretics</option>
+                                        </optgroup>
+                                        <optgroup label="Warhammer Fantasy Battle">
+                                            <option value="Beastmen">Beastmen</option>
+                                            <option value="Daemons of Chaos">Daemons of Chaos</option>
+                                            <option value="Dark Elves">Dark Elves</option>
+                                            <option value="Dwarfs">Dwarfs</option>
+                                            <option value="Empire">Empire</option>
+                                            <option value="High Elves">High Elves</option>
+                                            <option value="Lizardmen">Lizardmen</option>
+                                            <option value="Ogre Kingdoms">Ogre Kingdoms</option>
+                                            <option value="Orcs &amp; Goblins">Orcs &amp; Goblins</option>
+                                            <option value="Skaven">Skaven</option>
+                                            <option value="Tomb Kings">Tomb Kings</option>
+                                            <option value="Vampire Counts">Vampire Counts</option>
+                                            <option value="Warriors of Chaos">Warriors of Chaos</option>
+                                        </optgroup>
+                                    </select>
+                      <label class="sr-only" for="army-type-selector">Army type</label>
+                      <select class="form-control" name="army" id="army-type-selector">
+                                                <option value="astra_militarum_swag_v1" data-name="Astra Militarum Veteran Kill Team" style="display: block;">---</option>
+                                                <option value="orks_swag_v1" data-name="Ork Boyz Kill Team" style="display: none;">---</option>
+                                                <option value="space_marines_swag_v1" data-name="Space Marines Kill Team" style="display: none;">---</option>
+                                                <option value="space_wolves_swag_v1" data-name="Space Wolves Kill Team" style="display: none;">---</option>
+                                                <option value="adepta_sororitas_v4" data-name="Adepta Sororitas" style="display: none;">Battle-forged</option>
+                                                <option value="adepta_sororitas_v4_kt" data-name="Adepta Sororitas" style="display: none;">Kill Team</option>
+                                                <option value="imperium_v1" data-name="Armies of the Imperium" style="display: none;">Battle-forged</option>
+                                                <option value="astra_militarum_v1" data-name="Astra Militarum" style="display: none;">Battle-forged</option>
+                                                <option value="astra_militarum_v1_kt" data-name="Astra Militarum" style="display: none;">Kill Team</option>
+                                                <option value="astra_telepathica_v1" data-name="Astra Telepathica" style="display: none;">Battle-forged</option>
+                                                <option value="blood_angels_v3" data-name="Blood Angels" style="display: none;">Battle-forged</option>
+                                                <option value="blood_angels_v3_kt" data-name="Blood Angels" style="display: none;">Kill Team</option>
+                                                <option value="chaos_daemons_v3" data-name="Chaos Daemons" style="display: none;">Battle-forged</option>
+                                                <option value="chaos_daemons_v3_kt" data-name="Chaos Daemons" style="display: none;">Kill Team</option>
+                                                <option value="csm_v2_5" data-name="Chaos Space Marines" style="display: none;">Battle-forged</option>
+                                                <option value="csm_v2_5_kt" data-name="Chaos Space Marines" style="display: none;">Kill Team</option>
+                                                <option value="cult_mechanicus_v1" data-name="Cult Mechanicus" style="display: none;">Battle-forged</option>
+                                                <option value="cult_mechanicus_v1_kt" data-name="Cult Mechanicus" style="display: none;">Kill Team</option>
+                                                <option value="custodians_v2" data-name="Custodian Guard" style="display: none;">Battle-forged</option>
+                                                <option value="dark_angels_v3" data-name="Dark Angels" style="display: none;">Battle-forged</option>
+                                                <option value="dark_angels_v3_kt" data-name="Dark Angels" style="display: none;">Kill Team</option>
+                                                <option value="dark_eldar_v2" data-name="Dark Eldar" style="display: none;">Battle-forged</option>
+                                                <option value="dark_eldar_v2_kt" data-name="Dark Eldar" style="display: none;">Kill Team</option>
+                                                <option value="dw_v1" data-name="Deathwatch" style="display: none;">Battle-forged</option>
+                                                <option value="dw_v1_kt" data-name="Deathwatch" style="display: none;">Kill Team</option>
+                                                <option value="eldar_v3" data-name="Eldar" style="display: none;">Battle-forged</option>
+                                                <option value="eldar_v3_kt" data-name="Eldar" style="display: none;">Kill Team</option>
+                                                <option value="fallen_angels_v1" data-name="Fallen Angels" style="display: none;">Battle-forged</option>
+                                                <option value="gs_v1" data-name="Genestealer Cult" style="display: none;">Battle-forged</option>
+                                                <option value="gs_v1_kt" data-name="Genestealer Cult" style="display: none;">Kill Team</option>
+                                                <option value="gk_v3" data-name="Grey Knights" style="display: none;">Battle-forged</option>
+                                                <option value="gk_v3_kt" data-name="Grey Knights" style="display: none;">Kill Team</option>
+                                                <option value="harlequins" data-name="Harlequins" style="display: none;">Battle-forged</option>
+                                                <option value="harlequins_kt" data-name="Harlequins" style="display: none;">Kill Team</option>
+                                                <option value="imperial_knights_v2" data-name="Imperial Knights" style="display: none;">Battle-forged</option>
+                                                <option value="navy_v1" data-name="Imperial Navy" style="display: none;">Battle-forged</option>
+                                                <option value="inquisition_v2" data-name="Inquisition" style="display: none;">Battle-forged</option>
+                                                <option value="inquisition_v2_kt" data-name="Inquisition" style="display: none;">Kill Team</option>
+                                                <option value="khorne_daemonkin" data-name="Khorne Daemonkin" style="display: none;">Battle-forged</option>
+                                                <option value="khorne_daemonkin_kt" data-name="Khorne Daemonkin" style="display: none;">Kill Team</option>
+                                                <option value="damned" data-name="Legion of the Damned" style="display: none;">Battle-forged</option>
+                                                <option value="damned_kt" data-name="Legion of the Damned" style="display: none;">Kill Team</option>
+                                                <option value="militarum_tempestus_v1" data-name="Militarum Tempestus" style="display: none;">Battle-forged</option>
+                                                <option value="militarum_tempestus_v1_kt" data-name="Militarum Tempestus" style="display: none;">Kill Team</option>
+                                                <option value="necron_v3" data-name="Necrons" style="display: none;">Battle-forged</option>
+                                                <option value="necron_v3_kt" data-name="Necrons" style="display: none;">Kill Team</option>
+                                                <option value="assasin" data-name="Officio Assasinorum" style="display: none;">Battle-forged</option>
+                                                <option value="orks_v3" data-name="Orks" style="display: none;">Battle-forged</option>
+                                                <option value="orks_v3_kt" data-name="Orks" style="display: none;">Kill Team</option>
+                                                <option value="sisters_silent_v2" data-name="Sisters of Silence" style="display: none;">Battle-forged</option>
+                                                <option value="skitarii" data-name="Skitarii" style="display: none;">Battle-forged</option>
+                                                <option value="skitarii_kt" data-name="Skitarii" style="display: none;">Kill Team</option>
+                                                <option value="space_marines_v3" data-name="Space Marines" style="display: none;">Battle-forged</option>
+                                                <option value="space_marines_v3_kt" data-name="Space Marines" style="display: none;">Kill Team</option>
+                                                <option value="space_wolves_v4" data-name="Space Wolves" style="display: none;">Battle-forged</option>
+                                                <option value="space_wolves_v4_kt" data-name="Space Wolves" style="display: none;">Kill Team</option>
+                                                <option value="tau_v3" data-name="Tau Empire" style="display: none;">Battle-forged</option>
+                                                <option value="tau_v3_kt" data-name="Tau Empire" style="display: none;">Kill Team</option>
+                                                <option value="tyranids_v2" data-name="Tyranids" style="display: none;">Battle-forged</option>
+                                                <option value="tyranids_v2_kt" data-name="Tyranids" style="display: none;">Kill Team</option>
+                                                <option value="ynnari_v1" data-name="Ynnari" style="display: none;">Battle-forged</option>
+                                                <option value="corsair_v2" data-name="Corsairs" style="display: none;">Battle-forged</option>
+                                                <option value="krieg" data-name="Death Korps of Krieg" style="display: none;">Battle-forged</option>
+                                                <option value="dreadmob_v2" data-name="Dreadmob" style="display: none;">Battle-forged</option>
+                                                <option value="renegades_v1" data-name="Renegades and Heretics" style="display: none;">Battle-forged</option>
+                                                <option value="1a1b21268a8a4375a9681b0b7ac0e00a" data-name="Beastmen" style="display: none;">---</option>
+                                                <option value="c560b10e21f64537885445d03453b118" data-name="Daemons of Chaos" style="display: none;">---</option>
+                                                <option value="dark_elves_v2" data-name="Dark Elves" style="display: none;">---</option>
+                                                <option value="d9f8be799db14815860e7811e0cc5466" data-name="Dwarfs" style="display: none;">---</option>
+                                                <option value="9ed2faf9ad9b4d95aff2594f53a87dd4" data-name="Empire" style="display: none;">---</option>
+                                                <option value="1d954e0c5f0d4e9db9223bc2dff4563e" data-name="High Elves" style="display: none;">---</option>
+                                                <option value="lizardmen_v2" data-name="Lizardmen" style="display: none;">---</option>
+                                                <option value="9f49df0bfeea4c09a5e5c9a3affd5033" data-name="Ogre Kingdoms" style="display: none;">---</option>
+                                                <option value="c4e6f17058464a4ebfb1582f605056f5" data-name="Orcs &amp; Goblins" style="display: none;">---</option>
+                                                <option value="7815f0d1bb0844f094041740864be73e" data-name="Skaven" style="display: none;">---</option>
+                                                <option value="172091933f8448509cdee06c70b9e0fc" data-name="Tomb Kings" style="display: none;">---</option>
+                                                <option value="afb565a3190640a1b79ab9ded87a3b42" data-name="Vampire Counts" style="display: none;">---</option>
+                <option value="cfc4501f8f7c4421a2af3ce03f1e8c0c" data-name="Warriors of Chaos" style="display: none;">---</option>
+                </select>
+                    </div>
+                    <button class="btn btn-default" type="submit">Create</button>
+                    <script type="text/javascript">
+                      $("#army-selector").change(function() {
+                        var value = $(this).val();
+                        $("#army-type-selector > option").hide();
+                        $("#army-type-selector > option[data-name='" + value + "']").show();
+                        $("#army-type-selector").val($("#army-type-selector > option[data-name='" + value + "']").attr("value"));
+                      });
+                      $(document).ready(function() {
+                        var value = $("#army-selector").val();
+                        $("#army-type-selector > option").hide();
+                        $("#army-type-selector > option[data-name='" + value + "']").show();
+                        $("#army-type-selector").val($("#army-type-selector > option[data-name='" + value + "']").attr("value"));
+                      });
+                    </script>
+                  </form>
+                </div>
+                <div class="pull-right" data-bind="with: $data.del, visible: rosters().length>0">
+                  <button type="button" class="btn btn-danger" data-bind="click: deleteObjs, visible: deletingAllowed" style="display: none;"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                  <button type="button" class="btn btn-default" data-bind="click: selectAll"><span class="glyphicon glyphicon-check"></span> Select all</button>
+                  <button type="button" class="btn btn-default" data-bind="click: clear, visible: deletingAllowed" style="display: none;"><span class="glyphicon glyphicon-unchecked"></span> Clear</button>
+                </div>
+              </div>
+            </div>
+            <div data-bind="foreach: tagList.tags">
+              <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Adepta Sororitas (1)</a>
+              <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Dark Eldar (1)</a>
+              <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Deathwatch (1)</a>
+            </div>
+            <div data-bind="foreach: rosters">
+              <div data-bind="visible: $data.visible()" class="bs-callout bs-callout-unit">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-left">
+                      <a data-bind="attr: {href: $data.url}" href="/roster/181404">
+                                        <strong><span data-bind="text: $data.name">Adepta Sororitas</span>
+                                        <span class="text-muted" data-bind="visible: $data.name!=$data.type_name, text: '[' + $data.type_name + ']'" style="display: none;">[Adepta Sororitas]</span></strong>
+                                    </a>
+                      <em class="text-muted">- <span data-bind="text: $data.points">0</span>/<span data-bind="text: $data.limit?$data.limit:'\u221E'">1850</span>pt.</em>
+                    </div>
+                    <div class="pull-right">
+                      <input type="checkbox" data-bind="checked: $data.selected">
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  <em class="text-muted"><span data-bind="text: $data.description"></span></em>
+                </p>
+                <div data-bind="foreach: $data.tagsObj">
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Adepta Sororitas (1)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Warhammer 40k (3)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Battle-forged (3)</a>
+                </div>
+              </div>
+              <div data-bind="visible: $data.visible()" class="bs-callout bs-callout-unit">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-left">
+                      <a data-bind="attr: {href: $data.url}" href="/roster/180475">
+                                        <strong><span data-bind="text: $data.name">Dark Eldar</span>
+                                        <span class="text-muted" data-bind="visible: $data.name!=$data.type_name, text: '[' + $data.type_name + ']'" style="display: none;">[Dark Eldar]</span></strong>
+                                    </a>
+                      <em class="text-muted">- <span data-bind="text: $data.points">0</span>/<span data-bind="text: $data.limit?$data.limit:'\u221E'">1850</span>pt.</em>
+                    </div>
+                    <div class="pull-right">
+                      <input type="checkbox" data-bind="checked: $data.selected">
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  <em class="text-muted"><span data-bind="text: $data.description"></span></em>
+                </p>
+                <div data-bind="foreach: $data.tagsObj">
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Dark Eldar (1)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Warhammer 40k (3)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Battle-forged (3)</a>
+                </div>
+              </div>
+              <div data-bind="visible: $data.visible()" class="bs-callout bs-callout-unit">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-left">
+                      <a data-bind="attr: {href: $data.url}" href="/roster/180396">
+                                        <strong><span data-bind="text: $data.name">Deathwatch</span>
+                                        <span class="text-muted" data-bind="visible: $data.name!=$data.type_name, text: '[' + $data.type_name + ']'" style="display: none;">[Deathwatch]</span></strong>
+                                    </a>
+                      <em class="text-muted">- <span data-bind="text: $data.points">0</span>/<span data-bind="text: $data.limit?$data.limit:'\u221E'">1850</span>pt.</em>
+                    </div>
+                    <div class="pull-right">
+                      <input type="checkbox" data-bind="checked: $data.selected">
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  <em class="text-muted"><span data-bind="text: $data.description"></span></em>
+                </p>
+                <div data-bind="foreach: $data.tagsObj">
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Deathwatch (1)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Warhammer 40k (3)</a>
+                  <a href="#" class="label label-default" data-bind="text: $data.name + ' (' + $data.count + ')', css: 'label ' + ($data.selected()?'label-success':''), click: $data.click">Battle-forged (3)</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                <h4>
+                            <span class="glyphicon glyphicon-comment text-muted"></span>
+                            <a href="/timeline/filter/blog">Discuss.Blogs</a>
+                        </h4>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3592">
+            Can't choose Venerable Dreadnaught and other units?
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3583">
+            Bug: Castellans of the Imperium/Bike Squads
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 2
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3580">
+            Bug: Commissars in Cadian Battle Group
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 4
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3578">
+            Bug imperial armor ordance battery
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                      <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3572">
+            Dark Angels Deathwing Sergeants
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <a href="/timeline/post/3570">
+            Bug: Librarian Conclave Dark Angels
+         </a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <span class="text-muted">
+                      <span class="glyphicon glyphicon-thumbs-up"></span> 0
+                      <span class="glyphicon glyphicon-comment"></span> 1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
